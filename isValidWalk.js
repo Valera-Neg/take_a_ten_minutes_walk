@@ -16,30 +16,51 @@ of direction letters ('n', 's', 'e', or 'w' only). It will never give you an
 empty array (that's not a walk, that's standing still!).
 */
 
+
+/*    if (walk.length != 10) {
+    return false;
+  }
+  let count = 0;
+  for (let i = 0; i < walk.length; i++ ) {
+  
+  if(walk[i] === "n" || walk[i] === "e") {
+    count++
+
+  }
+  if(walk[i] === "w" || walk[i] ===  "s") {
+    count--;
+ 
+  }
+}
+ return count === 0; */
+ 
+
 function isValidWalk(walk) {
   if (walk.length != 10) {
     return false;
   }
-  let start = [0, 0];
+  let x = 0;
+  let y = 0;
   for (let i = 0; i < walk.length; i++) {
-    if (walk[i] === "n") {
-    start[1]++;
-     
-    } else if (walk[i] === "s") {
-     start[1]--;
-  
-    } else if (walk[i] === "w") {
-      start[0]--;
-
-    } else if (walk[i] === "e") {
-      start[0]++;
+    if (walk[i] === 'n') {
+      y++;
+    }
+    if (walk[i] === 's') {
+      y--;
+    }
+    if(walk[i] === 'e') {
+      x++;
+    }
+    if(walk[i]=== 'w') {
+      x--;
     }
   }
-  // return start[0] === 0 && start[1] === 0;
-  return JSON.stringify([0, 0]) === JSON.stringify(start);
+  return x === 0 && y === 0;
 }
 
 console.log(isValidWalk(['n','s','n','s','n','s','n','s','n','s'])) //> true
 console.log(isValidWalk(['w','e','w','e','w','e','w','e','w','e','w','e'])) //> false
 console.log(isValidWalk(['w'])) //> false
 console.log(isValidWalk(['n','n','n','s','n','s','n','s','n','s'])) //> false
+console.log(isValidWalk(['n','e','s','w'])) //> false
+console.log(isValidWalk(['n','e','s','w','n','e','s','w','s','n'])) //> true
